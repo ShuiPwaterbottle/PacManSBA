@@ -365,7 +365,7 @@ bool Game::loop()
 					dir_ghosts[i]=ghosts[i].move(mapX, pacmanX);
 				}
 			}
-			pacmanX.color = BLUE_GREEN_COLOR;
+			pacmanX.color = YELLOW_COLOR;
 		}
 		else { //处于超级豆模式
 			mapX.freezeTime--;
@@ -731,7 +731,7 @@ void Game::helpUI()
 
 	Goto_XY(MAP_SIZE * 2 + INFO_MARGIN_LEFT, INFO_MARGIN_UP + 2 + bias_vertical);
 	cout << "吃豆人：";
-	Position Player((MAP_SIZE * 2 + INFO_MARGIN_LEFT + 9) / 2, INFO_MARGIN_UP + 2 + bias_vertical, "↑", BLUE_GREEN_COLOR);
+	Position Player((MAP_SIZE * 2 + INFO_MARGIN_LEFT + 9) / 2, INFO_MARGIN_UP + 2 + bias_vertical, "↑", YELLOW_COLOR);
 	Player.print();
 	Goto_XY(MAP_SIZE * 2 + INFO_MARGIN_LEFT, INFO_MARGIN_UP + 4 + bias_vertical);
 	cout << "小怪：";

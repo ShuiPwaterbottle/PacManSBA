@@ -1,6 +1,6 @@
 #pragma once
 #include"Map.h"
-#include"Pacman.h"
+#include"player.h"
 #include"Ghost.h"
 #include"Record.h"
 #include<conio.h>

@@ -50,7 +50,7 @@
     <ClInclude Include="Map.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Pacman.h">
+    <ClInclude Include="player.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Game.h">

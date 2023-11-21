@@ -7,11 +7,11 @@ class Pacman:public Position
 public:
 	friend class Game;
 	Pacman() {};
-	//在(x,y)位置放置吃豆人
+	//initialize player's position
 	void init(int x, int y);
-	//pacman朝某个方向移动，且在Map中要检测移动是否合法（比如，墙无法前进）
+	//move and check for suitable movements
 	void move(int dir, Map &map);
-	//返回吃豆人当前所在的位置坐标
+	//return the coordinate of the player
 	void getXY(int &a, int &b);
 };
 

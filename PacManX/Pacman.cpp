@@ -1,8 +1,8 @@
-#include "Pacman.h"
+#include "player.h"
 
 void Pacman::init(int x, int y)
 {
-	color = BLUE_GREEN_COLOR;
+	color = YELLOW_COLOR;
 	setXY(x, y);
 	go = UP;
 	setKey("¡ü");

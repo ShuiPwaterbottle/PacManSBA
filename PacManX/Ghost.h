@@ -1,7 +1,7 @@
 #pragma once
 #include"Position.h"
 #include"Map.h"
-#include"Pacman.h"
+#include"player.h"
 
 class Ghost:public Position
 {
