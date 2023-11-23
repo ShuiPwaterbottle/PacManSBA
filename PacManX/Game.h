@@ -15,48 +15,43 @@ extern const int WINDOWS_SIZE_Y;
 
 class Game
 {
-	//四个模块：吃豆人、小怪、地图、历史记录
 	Pacman pacmanX;
 	vector<Ghost> ghosts;
 	Map mapX;
-	Record record;
+	Record record; //still testing
 
-	//小怪移动速度调节
+	//speed of the ghost
 	int GHOST_SPEED,speed_value;
-	//已过的时钟周期的个数
+	//time count
 	int time_counter;
-	//记录每个时钟周期时吃豆人/小怪的移动方向
+	//record the direction of the player or ghosts in a certain period
 	vector<int> steps;
-	//标识是否处于回放状态
+	//testtesttesttesttesttesttesttesttesttesttesttesttesttest
 	bool play_flag;
 
 public:
 	Game();
-	//游戏初始化
+   //init
 	void init();
-	//游戏初始界面
+	//start menu
 	int start();
-	//游戏配置选择
+	//game difficulty
 	bool settings();
-	//历史记录展示
+	//test
 	int show_record();
-	//游戏循环
 	bool loop();
-	//游戏回放
 	void play(int x);
 	
 private:
-	//游戏暂停
+	//game pause
 	void pause();
-	//游戏结束
 	bool game_over();
-	//游戏胜利
 	bool game_win();
-	//分数等相关游戏信息的UI
+	//Score UI
 	void infoUI();
-	//帮助信息UI绘制
+	//Instruction UI
 	void helpUI();
-	//暂停后，重新绘制所有界面
+	//refresh the panel after pause
 	void refresh();
 };
 
