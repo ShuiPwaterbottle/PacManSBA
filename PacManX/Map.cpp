@@ -47,7 +47,7 @@ void Map::init(const char * filepath, Pacman & pacman, vector<Ghost> &ghosts)
 			else if (keyStr == "⊕") {//超级豆子
 				points[i][j].setType(3);
 			}
-			else if (keyStr == "╈") {//小怪
+			else if (keyStr == "●") {//小怪
 				points[i][j].setType(0);
 				ghosts.emplace_back(Ghost(i, j));
 				if (ghosts.size() > 5) {

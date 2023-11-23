@@ -7,7 +7,7 @@ Ghost::Ghost(int x, int y)
 	setXY(x, y);
 	go = UP;
 	color = RED_COLOR;
-	setKey("©ì");
+	setKey("¡ñ");
 }
 extern int right_way_rate;
 int Ghost::move(Map & map,Pacman &pacman)

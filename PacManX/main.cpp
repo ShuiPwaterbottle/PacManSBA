@@ -17,12 +17,12 @@ int main() {
 			gameCtrl.init();
 			gameCtrl.loop();
 		}
-		else if (choice == 1) { //历史记录
+		/*else if (choice == 1) { //历史记录
 			//选择回放哪个历史记录
 			int record_idx=gameCtrl.show_record();
 			if (record_idx != -1) { //Esc键返回主页面
 				gameCtrl.play(record_idx);
 			}
-		}
+		}*/
 	}
 }

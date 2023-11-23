@@ -28,16 +28,16 @@ void Game::init()
 
 char GameName[] = { "\
                                                                                                      \n\
-     *********                                                                                       \n\
-     **      **                                                                                      \n\
-     **       **                                                                                     \n\
-     **      **                                                                                      \n\
-     *********       *****          ******        ***      ***         *****         **  *****       \n\
-     **            **     **      **      **     **  **   ** **      **     **     ** **      **     \n\
-     **           **       **    **              *   **  **   **    **       **      **        **    \n\
-     **          ***       **    **             **    ** *    **   ***       **      **        **    \n\
-     **           **      ***     **      **    *     ****     **   **      ***      **        **    \n\
-     **             *****   ***     ******     **      **       *     *****   ***    **        **    \n\
+     111111111                                                                                       \n\
+     11      11                                                                                      \n\
+     11       11                                                                                     \n\
+     11      11                                                                                      \n\
+     111111111       11111          111111        111      111         11111         11  11111       \n\
+     11            11     11      11      11     11  11   11 11      11     11     11 11      11     \n\
+     11           11       11    11              1   11  11   11    11       11      11        11    \n\
+     11          111       11    11             11    11 1    11   111       11      11        11    \n\
+     11           11      111     11      11    1     1111     11   11      111      11        11    \n\
+     11             11111   111     111111     11      11       1     11111   111    11        11    \n\
                                                                                                      \n\
                                                                                                      \n\
 "
@@ -61,9 +61,9 @@ int Game::start()
 	int vertical_margin = (MAP_SIZE + INFO_UI_SIZE)/2+5;
 	SetColor(THEME_COLOR);
 	Goto_XY(left_margin, vertical_margin - 1);
-	cout << "★"; SetColor(SELECTED_COLOR); cout << "开始游戏"; SetColor(THEME_COLOR);
-	Goto_XY(left_margin, vertical_margin + 1);
-	cout << "  历史记录";
+	cout << "→"; SetColor(SELECTED_COLOR); cout << "开始游戏"; SetColor(THEME_COLOR);
+/*	Goto_XY(left_margin, vertical_margin + 1);
+	cout << "  历史记录"; */
 
 	int selected = 0;
 	int MAX_IDX = 1;
@@ -83,20 +83,20 @@ int Game::start()
 					if (selected != 0){
 						selected = 0;
 						Goto_XY(left_margin, vertical_margin - 1);
-						cout << "★"; SetColor(SELECTED_COLOR); cout << "开始游戏"; SetColor(THEME_COLOR);
-						Goto_XY(left_margin, vertical_margin + 1);
-						cout << "  历史记录";
+						cout << "→"; SetColor(SELECTED_COLOR); cout << "开始游戏"; SetColor(THEME_COLOR);
+					/*	Goto_XY(left_margin, vertical_margin + 1);
+						cout << "  历史记录"; */
 					}
 					break;
-				case 80:
+		/*		case 80:
 					if (selected != MAX_IDX) {
 						selected = MAX_IDX;
 						Goto_XY(left_margin, vertical_margin - 1);
 						cout << "  开始游戏";
 						Goto_XY(left_margin, vertical_margin + 1);
-						cout << "★"; SetColor(SELECTED_COLOR); cout << "历史记录"; SetColor(THEME_COLOR);
+						cout << "→"; SetColor(SELECTED_COLOR); cout << "历史记录"; SetColor(THEME_COLOR);
 					}
-					break;
+					break; */
 				
 				default:
 					break;
@@ -130,7 +130,7 @@ void showSettings(int selected, int &speed) {
 	case 0:
 		speed = speed_min;
 		Goto_XY(left_margin, vertical_margin);
-		cout << "★"; SetColor(SELECTED_COLOR); cout << "简单模式  "; SetColor(THEME_COLOR);
+		cout << "→"; SetColor(SELECTED_COLOR); cout << "简单模式  "; SetColor(THEME_COLOR);
 		Goto_XY(left_margin, vertical_margin + 2);
 		cout << "  普通模式  ";
 		Goto_XY(left_margin, vertical_margin + 4);
@@ -143,7 +143,7 @@ void showSettings(int selected, int &speed) {
 		Goto_XY(left_margin, vertical_margin);
 		cout << "  简单模式  ";
 		Goto_XY(left_margin, vertical_margin + 2);
-		cout << "★"; SetColor(SELECTED_COLOR); cout << "普通模式  "; SetColor(THEME_COLOR);
+		cout << "→"; SetColor(SELECTED_COLOR); cout << "普通模式  "; SetColor(THEME_COLOR);
 		Goto_XY(left_margin, vertical_margin + 4);
 		cout << "  困难模式  ";
 		Goto_XY(left_margin, vertical_margin + 6);
@@ -156,7 +156,7 @@ void showSettings(int selected, int &speed) {
 		Goto_XY(left_margin, vertical_margin + 2);
 		cout << "  普通模式  ";
 		Goto_XY(left_margin, vertical_margin + 4);
-		cout << "★"; SetColor(SELECTED_COLOR); cout << "困难模式  "; SetColor(THEME_COLOR);
+		cout << "→"; SetColor(SELECTED_COLOR); cout << "困难模式  "; SetColor(THEME_COLOR);
 		Goto_XY(left_margin, vertical_margin + 6);
 		cout << "  自定义模式";
 		break;
@@ -168,7 +168,7 @@ void showSettings(int selected, int &speed) {
 		Goto_XY(left_margin, vertical_margin + 4);
 		cout << "  困难模式  ";
 		Goto_XY(left_margin, vertical_margin + 6);
-		cout << "★"; SetColor(SELECTED_COLOR); cout << "自定义模式"; SetColor(THEME_COLOR);
+		cout << "→"; SetColor(SELECTED_COLOR); cout << "自定义模式"; SetColor(THEME_COLOR);
 		break;
 	default:
 		break;
@@ -278,7 +278,7 @@ void showRecordChoice(int selected) {
 	for (int i = 0; i <= RECORD_MAX_IDX; i++) {
 		Goto_XY(left_margin_No-5, up_margin + 2 + i * 2);
 		if (i == selected) {
-			SetColor(THEME_COLOR); cout << "★"; SetColor(WHITE_COLOR);
+			SetColor(THEME_COLOR); cout << "→"; SetColor(WHITE_COLOR);
 		}
 		else
 			cout << "  ";
@@ -736,7 +736,7 @@ void Game::helpUI()
 	Goto_XY(MAP_SIZE * 2 + INFO_MARGIN_LEFT, INFO_MARGIN_UP + 4 + bias_vertical);
 	cout << "小怪：";
 	for (int i = 0; i < ghosts.size(); i++) {
-		Position ghost((MAP_SIZE * 2 + INFO_MARGIN_LEFT + 7 + i * 2) / 2, INFO_MARGIN_UP + 4 + bias_vertical, "╈", Ghost_Colors[i]);
+		Position ghost((MAP_SIZE * 2 + INFO_MARGIN_LEFT + 7 + i * 2) / 2, INFO_MARGIN_UP + 4 + bias_vertical, "●", Ghost_Colors[i]);
 		ghost.print();
 	}
 	Goto_XY(MAP_SIZE * 2 + INFO_MARGIN_LEFT, INFO_MARGIN_UP + 6 + bias_vertical);
