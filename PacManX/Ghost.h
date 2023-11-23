@@ -5,18 +5,17 @@
 
 class Ghost:public Position
 {
-	//表示移动方向
+	//琛ㄧず绉诲姩鏂瑰悜
 	DIRECTION go;
-	//初始位置坐标
+	//鍒濆浣嶇疆鍧愭爣
 	int init_x, init_y;
 public:
 	Ghost() {};
-	//在(x,y)位置放置小怪
-	Ghost(int x, int y);
-	//小怪朝某个方向移动，且在Map中要检测移动是否合法（比如，墙无法前进）
-	int move(Map &map,Pacman &pacman);
-	int move(int dir,Map &map, Pacman &pacman);//重载：指定方向的移动
-	//碰撞检测：若不在冷冻期，则GameOver；否则，该小怪回到初始位置
+	
+	Ghost(int x, int y); //initalise
+	int move(Map &map,Pacman &pacman); //move and check for suitable movement
+	int move(int dir,Map &map, Pacman &pacman);//same
+	//check for the ghosts has crushed into player or not. If player get super pean, ghosts will back to home.
 	bool hit(Pacman &pacman, Map &map);
 };
 
