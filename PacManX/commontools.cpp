@@ -22,7 +22,7 @@ void HideCursor()
 //设置窗口大小
 void SetWindowSize(int cols, int lines)
 {
-	system("title PacManX");//设置窗口标题
+	system("title Pac-Man");//设置窗口标题
 	char cmd[30];
 	sprintf(cmd, "mode con cols=%d lines=%d", cols, lines);
 	system(cmd); //设置窗口宽度和高度

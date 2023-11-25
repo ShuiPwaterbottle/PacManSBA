@@ -182,7 +182,7 @@ void MapPos::setType(int t)
 		break;
 	case WALL:
 		setKey("¡ö");
-		color = BLUE_LITE_COLOR;
+		color = WHITE_COLOR;
 		break;
 	case PEAN:
 		setKey("¡¤");
@@ -190,7 +190,7 @@ void MapPos::setType(int t)
 		break;
 	case SUPER_PEAN:
 		setKey("¨’");
-		color = GREEN_COLOR;
+		color = YELLOW_COLOR;
 		break;
 	default:
 		break;

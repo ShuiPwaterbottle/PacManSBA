@@ -23,6 +23,6 @@ int main() {
 			if (record_idx != -1) { //Esc¼ü·µ»ØÖ÷Ò³Ãæ
 				gameCtrl.play(record_idx);
 			}
-		}*/
+		}	*/
 	}
 }

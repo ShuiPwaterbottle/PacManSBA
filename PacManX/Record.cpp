@@ -105,23 +105,23 @@ void Record::show()
 	system("cls");
 	SetColor(HIGHLIGHT_COLOR);
 	Goto_XY(WINDOWS_SIZE_X / 2 - 8, 0);
-	cout << "历史记录 - TOP 10";
+	cout << "Best records - TOP 10";
 	SetColor(TITLE_COLOR);
 	Goto_XY(left_margin_No, up_margin);
-	cout << "排名";
+	cout << "Rank";
 	Goto_XY(left_margin_name, up_margin);
-	cout << "记录时间";
+	cout << "Time";
 	Goto_XY(left_margin_score, up_margin);
-	cout << "得分";
+	cout << "Score";
 	Goto_XY(left_margin_time, up_margin);
-	cout << "游戏时长";
+	cout << "Played time";
 	Goto_XY(left_margin_speed, up_margin);
-	cout << "小怪移动速度";
+	cout << "Difficulty";
 	SetColor(WHITE_COLOR);
 
 	if (items.size() == 0) {
 		Goto_XY(left_margin_No, up_margin + 2);
-		cout << "（记录为空）";
+		cout << "（Records are empty...）";
 	}
 	for (int i = 0; i < items.size(); i++) {
 		Goto_XY(left_margin_No, up_margin + 2 + i * 2);
@@ -133,7 +133,7 @@ void Record::show()
 		Goto_XY(left_margin_time, up_margin + 2 + i * 2);
 		printf("%.1fs", items[i].steps_num / (items[i].ghost_num + 1)*50.0 / 1000);
 		Goto_XY(left_margin_speed, up_margin + 2 + i * 2);
-		cout << items[i].speed<<" 格/秒";
+		cout << items[i].speed<<" Block/s";
 	}
 	
 }
