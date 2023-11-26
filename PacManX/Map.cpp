@@ -1,18 +1,15 @@
 #include "Map.h"
 #include "Ghost.h"
-
-//预先定义的颜色数组
-int Ghost_Colors[] = { RED_COLOR, GREEN_COLOR, WHITE_COLOR,PINK_COLOR,YELLOW_LITE_COLOR };
+int Ghost_Colors[] = { RED_COLOR, GREEN_COLOR,BLUE_GREEN_COLOR,PINK_COLOR,YELLOW_LITE_COLOR };
 const int LINE_MAX = 200;
 void Map::init(const char * filepath, Pacman & pacman, vector<Ghost> &ghosts)
 {
-	//初始化
+	//init
 	scores = 0;
-	freezeTime = 0;
-	target_scores = 0;
+	freezeTime = 0; //Superpean period
+	target_scores = 0;	//winning score
 	ghosts.clear();
-
-	//从文件中读入地图
+	//Read in the map from the file.
 	ifstream fin(filepath);
 	if (!fin) {
 		system("cls");
@@ -23,7 +20,6 @@ void Map::init(const char * filepath, Pacman & pacman, vector<Ghost> &ghosts)
 	char line[LINE_MAX];
 	int j = 0;
 	while (fin.getline(line, LINE_MAX)) {
-		if (line[0] == '#'||line[0] == ' ') continue;//'#' notess
 		if (strlen(line) != MAP_SIZE * 2) {
 			system("cls");
 			cout << "Size of the map is not match. Please keep the size as 29*29. \n\n";
@@ -34,20 +30,20 @@ void Map::init(const char * filepath, Pacman & pacman, vector<Ghost> &ghosts)
 			char tempWord[3];
 			tempWord[0] = line[i * 2]; tempWord[1] = line[i * 2 + 1]; tempWord[2] = '\0';
 			string keyStr(tempWord);
-			if (keyStr == "  ") {//空白
+			if (keyStr == "  ") {//Blank
 				points[i][j].setType(0);
 			}
-			else if (keyStr == "■"){//墙
+			else if (keyStr == "■"){//Wall
 				points[i][j].setType(1);
 			}
-			else if (keyStr == "·") {//豆子
+			else if (keyStr == "·") {//Peans
 				points[i][j].setType(2);
 				target_scores++;
 			}
-			else if (keyStr == "⊕") {//超级豆子
+			else if (keyStr == "⊕") {//Super peans
 				points[i][j].setType(3);
 			}
-			else if (keyStr == "●") {//小怪
+			else if (keyStr == "●") {//Ghosts
 				points[i][j].setType(0);
 				ghosts.emplace_back(Ghost(i, j));
 				if (ghosts.size() > 5) {
@@ -58,7 +54,7 @@ void Map::init(const char * filepath, Pacman & pacman, vector<Ghost> &ghosts)
 				}
 				ghosts[ghosts.size() - 1].color = Ghost_Colors[ghosts.size() - 1];
 			}
-			else if (keyStr == "↑") {//吃豆人
+			else if (keyStr == "↑") {//player
 				points[i][j].setType(0);
 				pacman.init(i,j);
 			}
