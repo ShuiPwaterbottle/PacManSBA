@@ -54,10 +54,9 @@ void Record::save()
 void Record::add(int the_score, const vector<int> &steps, int ghost_num, int speed)
 {
 	read();
-	//以当前时间作为记录名字
 	time_t t = time(NULL);
 	char time_string[64] = { 0 };
-	strftime(time_string, sizeof(time_string) - 1, "%Y-%m-%d_%H:%M:%S", localtime(&t));     //年-月-日 时-分-秒
+	strftime(time_string, sizeof(time_string) - 1, "%Y-%m-%d_%H:%M:%S", localtime(&t));   
 	items.push_back(RecordItem(time_string, the_score));
 	int idx = items.size() - 1;
 	items[idx].ghost_num = ghost_num;
@@ -76,7 +75,6 @@ extern const int WINDOWS_SIZE_X;
 extern const int WINDOWS_SIZE_Y;
 void Record::show()
 {
-	//对齐
 	int left_margin_No = WINDOWS_SIZE_X / 2 - 30;
 	int left_margin_name = left_margin_No + 10;
 	int left_margin_score = left_margin_name + 25;
@@ -87,10 +85,8 @@ void Record::show()
 	read();
 	SetColor(WHITE_COLOR);
 	system("cls");
-	SetColor(HIGHLIGHT_COLOR);
 	Goto_XY(WINDOWS_SIZE_X / 2 - 8, 0);
 	cout << "Best records - TOP 10";
-	SetColor(TITLE_COLOR);
 	Goto_XY(left_margin_No, up_margin);
 	cout << "Rank";
 	Goto_XY(left_margin_name, up_margin);
@@ -101,7 +97,6 @@ void Record::show()
 	cout << "Played time";
 	Goto_XY(left_margin_speed, up_margin);
 	cout << "Difficulty";
-	SetColor(WHITE_COLOR);
 
 	if (items.size() == 0) {
 		Goto_XY(left_margin_No, up_margin + 2);

@@ -16,7 +16,7 @@ void Map::init(const char * filepath, Pacman & pacman, vector<Ghost> &ghosts)
 	ifstream fin(filepath);
 	if (!fin) {
 		system("cls");
-		cout << "地图文件打开失败！请检查.exe程序同目录下是否存在map.txt文件 或者 更换本程序存放位置\n\n" << endl;
+		cout << "Cannot found map file.\n\n" << endl;
 		system("pause");
 		exit(-1);
 	}
@@ -26,7 +26,7 @@ void Map::init(const char * filepath, Pacman & pacman, vector<Ghost> &ghosts)
 		if (line[0] == '#'||line[0] == ' ') continue;//'#' notess
 		if (strlen(line) != MAP_SIZE * 2) {
 			system("cls");
-			cout << "地图尺寸不符！请保持29×29的大小~请重新编辑地图文件...\n\n";
+			cout << "Size of the map is not match. Please keep the size as 29*29. \n\n";
 			system("pause");
 			exit(-1);
 		}
@@ -52,7 +52,7 @@ void Map::init(const char * filepath, Pacman & pacman, vector<Ghost> &ghosts)
 				ghosts.emplace_back(Ghost(i, j));
 				if (ghosts.size() > 5) {
 					system("cls");
-					cout << "小怪数量大于5！请重新编辑地图文件...\n\n";
+					cout << "Too many ghosts. That will be too hard. Please keep the number of ghosts below or equal to 5.\n\n";
 					system("pause");
 					exit(-1);
 				}
@@ -67,7 +67,7 @@ void Map::init(const char * filepath, Pacman & pacman, vector<Ghost> &ghosts)
 	}
 	if (j != MAP_SIZE) {
 		system("cls");
-		cout << "地图尺寸不符！请保持29×29的大小~请重新编辑地图文件...\n\n";
+		cout << "Size of the map is not match. Please keep the size as 29*29.\n\n";
 		system("pause");
 		exit(-1);
 	}
@@ -130,7 +130,7 @@ void Map::findPath(Position & A, Position & B)
 		for (int i = 0; i < 4; i++) {
 			int ix = tempXY.x + dx[i];
 			int iy = tempXY.y + dy[i];
-			if (ix >= 0 && ix < MAP_SIZE&&iy >= 0 && iy < MAP_SIZE && !visited[ix][iy] && points[ix][iy].getType() != WALL) {
+			if (ix >= 0 && ix < MAP_SIZE&&iy >= 0 && iy < MAP_SIZE && !visited[ix][iy] && points[ix][iy].getType() != WALL ) {
 				visited[ix][iy] = 1;
 				PosXY next;
 				next.x = ix;

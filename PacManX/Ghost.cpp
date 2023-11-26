@@ -9,7 +9,6 @@ Ghost::Ghost(int x, int y)
 	color = RED_COLOR;
 	setKey("●");
 }
-extern int right_way_rate;
 int Ghost::move(Map & map,Pacman &pacman) //check for movement
 {
 	int res = -1;//返回值：走的方向
@@ -38,7 +37,7 @@ int Ghost::move(Map & map,Pacman &pacman) //check for movement
 		default:
 			break;
 		}
-		if (!map.oK(x, y) || map.goXY(x, y) == WALL) {
+		if (!map.oK(x, y) || map.goXY(x, y) == WALL ) {
 			x = tempX; y = tempY;
 		}
 		else {
@@ -78,7 +77,7 @@ int Ghost::move(int dir, Map & map, Pacman & pacman)
 	default:
 		break;
 	}
-	if (!map.oK(x, y) || map.goXY(x, y) == WALL) {
+	if (!map.oK(x, y) || map.goXY(x, y) == WALL ) {
 		x = tempX; y = tempY;
 	}
 	else {
@@ -108,4 +107,10 @@ bool Ghost::hit(Pacman & pacman, Map &map)
 	}
 	else
 		return false;
+}
+void Ghost::getXY(int& a, int& b)
+{
+	a = x;
+	b = y;
+	return;
 }

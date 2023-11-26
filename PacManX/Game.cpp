@@ -11,7 +11,7 @@ Game::Game()
 }
 void Game::init()
 {
-	mapX.init("map.txt", pacmanX, ghosts);
+	map.init("map.txt", pac_man, ghosts);
 	time_counter = 0;
 	steps.clear();
 	play_flag = false;
@@ -256,22 +256,22 @@ bool Game::loop()
 			dir_ghosts[i] = -1;
 
 		//小怪移动模块
-		if (mapX.freezeTime == 0) {
+		if (map.freezeTime == 0) {
 			++speed_adapter;
 			if (speed_adapter == GHOST_SPEED) {
 				speed_adapter = 0;
 				//所有小怪都移动
 				for (int i = 0; i < ghost_num; i++) {
-					dir_ghosts[i]=ghosts[i].move(mapX, pacmanX);
+					dir_ghosts[i]=ghosts[i].move(map, pac_man);
 				}
 			}
-			pacmanX.color = YELLOW_COLOR;
+			pac_man.color = YELLOW_COLOR;
 		}
 		else { //处于超级豆模式
-			mapX.freezeTime--;
+			map.freezeTime--;
 			PacmanColors_i = (PacmanColors_i + 1) % (sizeof(Pacman_Colors) / 4);
-			pacmanX.color = Pacman_Colors[PacmanColors_i];
-			pacmanX.print();
+			pac_man.color = Pacman_Colors[PacmanColors_i];
+			pac_man.print();
 		}
 		
 		//键盘按键识别
@@ -286,19 +286,19 @@ bool Game::loop()
 				switch (ch)
 				{
 				case 72:
-					pacmanX.move(UP, mapX);
+					pac_man.move(UP, map);
 					dir_pacman = UP;
 					break;
 				case 80:
-					pacmanX.move(DOWN, mapX);
+					pac_man.move(DOWN, map);
 					dir_pacman = DOWN;
 					break;
 				case 75:
-					pacmanX.move(LEFT, mapX);
+					pac_man.move(LEFT, map);
 					dir_pacman = LEFT;
 					break;
 				case 77:
-					pacmanX.move(RIGHT, mapX);
+					pac_man.move(RIGHT, map);
 					dir_pacman = RIGHT;
 					break;
 				default:
@@ -319,12 +319,12 @@ bool Game::loop()
 		for (int i = 0; i < ghost_num; i++)
 			steps.push_back(dir_ghosts[i]);
 
-		if (mapX.scores == mapX.target_scores) {
+		if (map.scores == map.target_scores) {
 			return game_win();
 		}
 
 		for (auto&ghost_i : ghosts) {
-			if (ghost_i.hit(pacmanX,mapX))
+			if (ghost_i.hit(pac_man,map))
 				return game_over();
 		}
 		//layout
@@ -365,7 +365,7 @@ void Game::pause()
 
 bool Game::game_over()
 {
-	record.add(mapX.scores, steps, ghosts.size(), speed_value);
+	record.add(map.scores, steps, ghosts.size(), speed_value);
 	record.show();
 	Goto_XY(WINDOWS_SIZE_X / 2 - 8, WINDOWS_SIZE_Y - 3);
 	cout << " Game Over " << endl;
@@ -377,7 +377,7 @@ bool Game::game_over()
 
 bool Game::game_win()
 {
-	record.add(mapX.scores, steps, ghosts.size(), speed_value);
+	record.add(map.scores, steps, ghosts.size(), speed_value);
 	record.show();
 	Goto_XY(WINDOWS_SIZE_X / 2 - 14, WINDOWS_SIZE_Y - 3);
 	cout << "Congratulations~You Win!!!" << endl;
@@ -403,18 +403,18 @@ void Game::infoUI()
 	string str_Space(MAP_SIZE * 2, ' ');
 	cout << str_Space;
 	Goto_XY(0, MAP_SIZE + INFO_UI_SIZE / 2);
-	cout << "Score：" << mapX.scores;
+	cout << "Score：" << map.scores;
 
 	Goto_XY(0, MAP_SIZE + INFO_UI_SIZE - 2);
 	cout << str_Space;
 	Goto_XY(0, MAP_SIZE + INFO_UI_SIZE - 1);
 	cout << str_Space;
-	if (mapX.freezeTime > 0) {
+	if (map.freezeTime > 0) {
 		Goto_XY(0, MAP_SIZE + INFO_UI_SIZE - 2);
-		printf("Super pean countdown：%.1fs", mapX.freezeTime*50.0 / 1000);
+		printf("Super pean countdown：%.1fs", map.freezeTime*50.0 / 1000);
 	
 		Goto_XY(0, MAP_SIZE + INFO_UI_SIZE - 1);
-		string str_time_counter((mapX.freezeTime)*MAP_SIZE * 2 / MAX_FREEZE_TIME, '#');
+		string str_time_counter((map.freezeTime)*MAP_SIZE * 2 / MAX_FREEZE_TIME, '#');
 		cout << str_time_counter;
 	}
 }
@@ -497,10 +497,10 @@ void Game::refresh()
 	system("cls");
 	for (int i = 0; i < MAP_SIZE; i++) {
 		for (int j = 0; j < MAP_SIZE; j++) {		
-			mapX.points[i][j].print();
+			map.points[i][j].print();
 		}
 	}
-	pacmanX.print();
+	pac_man.print();
 	for (auto &ghost_i : ghosts) {
 		ghost_i.print();
 	}

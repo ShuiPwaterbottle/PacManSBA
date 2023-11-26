@@ -13,7 +13,7 @@ extern const int TIME_SPEED;
 const int MAX_FREEZE_TIME = 5 * 1000 / TIME_SPEED;
 
 //Type of the point on the map, such as these:
-enum MAP_POS_TYPE { SPACE,WALL,PEAN,SUPER_PEAN };
+enum MAP_POS_TYPE { SPACE,WALL,PEAN,SUPER_PEAN};
 class MapPos: public Position
 {
 	int type; 

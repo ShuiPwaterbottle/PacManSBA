@@ -17,5 +17,6 @@ public:
 	int move(int dir,Map &map, Pacman &pacman);//same
 	//check for the ghosts has crushed into player or not. If player get super pean, ghosts will back to home.
 	bool hit(Pacman &pacman, Map &map);
+	void getXY(int& a, int& b);
 };
 

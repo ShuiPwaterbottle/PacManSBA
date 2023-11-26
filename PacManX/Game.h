@@ -15,10 +15,10 @@ extern const int WINDOWS_SIZE_Y;
 
 class Game
 {
-	Pacman pacmanX;
+	Pacman pac_man;
 	vector<Ghost> ghosts;
-	Map mapX;
-	Record record; //still testing
+	Map map;
+	Record record; 
 
 	//speed of the ghost
 	int GHOST_SPEED,speed_value;
@@ -26,7 +26,6 @@ class Game
 	int time_counter;
 	//record the direction of the player or ghosts in a certain period
 	vector<int> steps;
-	//testtesttesttesttesttesttesttesttesttesttesttesttesttest
 	bool play_flag;
 
 public:
