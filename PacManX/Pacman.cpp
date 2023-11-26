@@ -11,10 +11,7 @@ void Pacman::init(int x, int y)
 void Pacman::move(int dir, Map &map)
 {
 	if (dir == -1) return;
-
-	//先备份x,y 防止下一个位置不合法
-	int tempX=x, tempY=y;
-
+	int tempX=x, tempY=y; // use for test next position is legal or not
 	switch (dir)
 	{
 	case UP:

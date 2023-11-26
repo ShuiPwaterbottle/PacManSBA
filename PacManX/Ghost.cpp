@@ -10,13 +10,11 @@ Ghost::Ghost(int x, int y)
 	setKey("●");
 }
 extern int right_way_rate;
-int Ghost::move(Map & map,Pacman &pacman)
+int Ghost::move(Map & map,Pacman &pacman) //check for movement
 {
 	int res = -1;//返回值：走的方向
-
-	//先备份x,y 防止下一个位置不合法
 	int tempX = x, tempY = y;
-	bool flag = true;//用于标志，是否迈出了一步
+	bool flag = true;
 	while (flag) {
 		int dir = map.findDir(*this, pacman); // bfs
 		switch (dir)

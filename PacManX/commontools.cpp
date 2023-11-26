@@ -1,6 +1,5 @@
 #include"commonh.h"
 
-//设置光标位置
 void Goto_XY(const int x, const int y)
 {
 	COORD position;

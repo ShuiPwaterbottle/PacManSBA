@@ -314,156 +314,26 @@ bool Game::loop()
 			}
 		}
 
-		//记录走的方向
+		//to calculate the time played
 		steps.push_back(dir_pacman);
 		for (int i = 0; i < ghost_num; i++)
 			steps.push_back(dir_ghosts[i]);
-	
-		//判断是否游戏胜利：吃完所有豆子
+
 		if (mapX.scores == mapX.target_scores) {
 			return game_win();
 		}
 
-		//判断是否游戏失败：玩家撞上小怪
 		for (auto&ghost_i : ghosts) {
 			if (ghost_i.hit(pacmanX,mapX))
 				return game_over();
 		}
-		
-		//更新UI界面
+		//layout
 		infoUI();
 
 		++time_counter;
-		//时钟周期
 		Sleep(50);
 	}
 }
-
-void Game::play(int x)
-{	
-	//记录为空
-	if (record.items.size() == 0) return;
-
-	//从历史记录条目中，读取到的参数信息
-	speed_value = record.items[x].speed;
-	GHOST_SPEED = 1000 / (50 * speed_value);
-	int ghost_num = record.items[x].ghost_num;
-	
-	//一般初始化
-	init();
-	//在init()后开启回放状态
-	play_flag = true;
-	refresh();
-
-	if (ghost_num != ghosts.size()) { //校验地图的小怪数量是否与历史记录中的匹配
-		system("cls");
-		cout << "检测到历史记录条目对应的地图与地图文件不符！无法播放...请删除历史记录文件：game.record 或者 还原地图" << endl;
-		system("pause");
-		exit(-1);
-	}
-	int numPerUnit = ghost_num + 1;//每numPerUnit个在steps中为一个时钟周期的步子
-
-	//用于方向记录
-	int dir_pacman = -1;
-	int *dir_ghosts = new int[ghost_num];
-
-	helpUI();
-	int speed_adapter = 0;
-	while (true) {
-		//初始化 -1 表示未移动
-		dir_pacman = record.items[x].steps[time_counter * numPerUnit];
-		for (int i = 0; i < ghost_num; i++)
-			dir_ghosts[i] = record.items[x].steps[time_counter * numPerUnit + i + 1];
-
-		//小怪移动模块
-		for (int i = 0; i < ghost_num; i++) {
-			ghosts[i].move(dir_ghosts[i], mapX, pacmanX);
-		}
-
-		if(mapX.freezeTime != 0){ //处于超级豆模式
-			mapX.freezeTime--;
-			PacmanColors_i = (PacmanColors_i + 1) % (sizeof(Pacman_Colors) / 4);
-			pacmanX.color = Pacman_Colors[PacmanColors_i];
-			pacmanX.print();
-		}
-		pacmanX.move(dir_pacman, mapX);
-
-		//碰撞检测：无敌状态的碰撞特殊
-		for (auto&ghost_i : ghosts) {
-			ghost_i.hit(pacmanX, mapX);
-		}
-
-		char ch;
-		if (_kbhit())
-		{
-			ch = _getch();
-			switch (ch)
-			{
-			case -32:
-				ch = _getch();
-				switch (ch)
-				{
-				case 72:
-					pacmanX.move(UP, mapX);
-					dir_pacman = UP;
-					break;
-				case 80:
-					pacmanX.move(DOWN, mapX);
-					dir_pacman = DOWN;
-					break;
-				case 75:
-					pacmanX.move(LEFT, mapX);
-					dir_pacman = LEFT;
-					break;
-				case 77:
-					pacmanX.move(RIGHT, mapX);
-					dir_pacman = RIGHT;
-					break;
-				default:
-					break;
-				}
-				//回放过程中按下了方向键，退出回放过程
-				play_flag = false;
-				break;
-			case 27://Esc
-				return;
-			case ' ':
-				pause();
-				break;
-			default:;
-			}
-		}
-		
-		//记录走的方向
-		steps.push_back(dir_pacman);
-		for (int i = 0; i < ghost_num; i++)
-			steps.push_back(dir_ghosts[i]);
-
-		if (!play_flag) {
-			//在回放的过程中按下了方向键，退出回放模式，进入正常游戏模式
-			loop();
-			return;
-		}
-
-		//更新UI界面
-		infoUI();
-
-		++time_counter;
-		if (time_counter * numPerUnit >= record.items[x].steps_num) {
-			//回放结束-标记吃豆人的最终位置
-			pacmanX.setKey("╳");
-			pacmanX.print();
-			Goto_XY(0, WINDOWS_SIZE_Y - 2);
-			cout << "（按任意键回到主界面）" << endl;
-			system("pause");
-			break;
-		}
-		//时钟周期
-		Sleep(50);
-	}
-	delete[] dir_ghosts;
-}
-
 void Game::pause()
 {
 	int bias_temp=23;
@@ -498,7 +368,6 @@ bool Game::game_over()
 	record.add(mapX.scores, steps, ghosts.size(), speed_value);
 	record.show();
 	Goto_XY(WINDOWS_SIZE_X / 2 - 8, WINDOWS_SIZE_Y - 3);
-	SetColor(LOST_COLOR);
 	cout << " Game Over " << endl;
 	SetColor(WHITE_COLOR);
 	cout << "Press any key back to the menu.." << endl;
@@ -511,7 +380,6 @@ bool Game::game_win()
 	record.add(mapX.scores, steps, ghosts.size(), speed_value);
 	record.show();
 	Goto_XY(WINDOWS_SIZE_X / 2 - 14, WINDOWS_SIZE_Y - 3);
-	SetColor(WIN_COLOR);
 	cout << "Congratulations~You Win!!!" << endl;
 	SetColor(WHITE_COLOR);
 	cout << "Press any key back to the menu..." << endl;
@@ -561,7 +429,7 @@ void Game::helpUI()
 	int width = 28;
 
 	Goto_XY(MAP_SIZE * 2 + INFO_MARGIN_LEFT + width / 2 - 4, INFO_MARGIN_UP - 2);
-	SetColor(TITLE_COLOR); cout << "Instructions"; SetColor(WHITE_COLOR);
+	cout << "Instructions";
 	Goto_XY(MAP_SIZE * 2 + INFO_MARGIN_LEFT - 1, INFO_MARGIN_UP - 3);
 	string line1(width, '-');
 	cout << "+" << line1 << "+";
@@ -620,9 +488,8 @@ void Game::helpUI()
 	SuperPean.print();
 	
 	Goto_XY(MAP_SIZE * 2 + INFO_MARGIN_LEFT + 2, INFO_MARGIN_UP + 10 + bias_vertical);
-	SetColor(HIGHLIGHT_COLOR);
-	cout << "Difficulty:"<< speed_value <<"Block/s";
-	SetColor(WHITE_COLOR);
+	cout << "Difficulty: "<< speed_value <<" Block/s";
+
 }
 
 void Game::refresh()

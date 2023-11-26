@@ -64,6 +64,9 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <Text Include="acutalmap.txt">
+      <Filter>资源文件</Filter>
+    </Text>
     <Text Include="map.txt">
       <Filter>资源文件</Filter>
     </Text>

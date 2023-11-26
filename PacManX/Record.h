@@ -27,20 +27,18 @@ public:
 
 class Record //记录管理器
 {
-	const char *filepath; //存放历史记录的文件名
-	vector<RecordItem> items; //历史记录条目
+	const char *filepath; //file name to store the records
+	vector<RecordItem> items; //records
 public:
 	friend class Game;
 	Record():filepath("game.record"){};
-	//从文件中读取历史记录信息
+	//read the data from the file
 	void read();
-	//将历史信息存入文件
+	//save the data to the file
 	void save();
-	//增加一条历史记录信息
+	//add a record
 	void add(int the_score,const vector<int> &steps,int ghost_num,int speed);
-	//删除指定下标的历史记录条目
-	void del(int x);
-	//展示历史记录
+	//show the record.
 	void show();
 };
 

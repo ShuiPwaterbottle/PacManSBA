@@ -72,22 +72,6 @@ void Record::add(int the_score, const vector<int> &steps, int ghost_num, int spe
 	}
 	save();
 }
-
-void Record::del(int x)
-{
-	int counter = 0;
-	for (auto i = items.begin(); i != items.end(); i++) {
-		if (counter == x) {
-			items.erase(i);
-			save();
-			return;
-		}
-		counter++;
-	}
-	return;
-}
-
-
 extern const int WINDOWS_SIZE_X;
 extern const int WINDOWS_SIZE_Y;
 void Record::show()
