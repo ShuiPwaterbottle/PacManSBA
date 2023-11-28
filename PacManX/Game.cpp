@@ -274,7 +274,7 @@ bool Game::loop()
 			pac_man.print();
 		}
 		
-		//¼üÅÌ°´¼üÊ¶±ğ
+		//Detect entered key
 		char ch;
 		if (_kbhit())
 		{

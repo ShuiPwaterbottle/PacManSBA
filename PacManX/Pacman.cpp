@@ -7,7 +7,6 @@ void Pacman::init(int x, int y)
 	go = UP;
 	setKey("↑");
 }
-//pacman朝某个方向移动，且在Map中要检测移动是否合法（比如，墙无法前进）
 void Pacman::move(int dir, Map &map)
 {
 	if (dir == -1) return;

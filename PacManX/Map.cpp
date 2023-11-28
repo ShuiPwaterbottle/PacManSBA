@@ -17,7 +17,7 @@ void Map::init(const char * filepath, Pacman & pacman, vector<Ghost> &ghosts)
 		system("pause");
 		exit(-1);
 	}
-	char line[LINE_MAX];
+	char line[LINE_MAX]; //LINE_MAX = 200
 	int j = 0;
 	while (fin.getline(line, LINE_MAX)) {
 		if (strlen(line) != MAP_SIZE * 2) {
@@ -28,7 +28,9 @@ void Map::init(const char * filepath, Pacman & pacman, vector<Ghost> &ghosts)
 		}
 		for (int i = 0; i < MAP_SIZE; i++) {
 			char tempWord[3];
-			tempWord[0] = line[i * 2]; tempWord[1] = line[i * 2 + 1]; tempWord[2] = '\0';
+			tempWord[0] = line[i * 2]; 
+			tempWord[1] = line[i * 2 + 1]; 
+			tempWord[2] = '\0';
 			string keyStr(tempWord);
 			if (keyStr == "  ") {//Blank
 				points[i][j].setType(0);
