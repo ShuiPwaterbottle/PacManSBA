@@ -26,3 +26,10 @@ void Position::clear()
 	Goto_XY(x * 2, y);
 	cout << "  ";
 }
+
+void Position::getXY(int& a, int& b)
+{
+	a = x;
+	b = y;
+	return;
+}

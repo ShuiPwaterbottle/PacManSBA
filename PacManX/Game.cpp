@@ -242,32 +242,29 @@ int PacmanColors_i = 0;
 bool Game::loop()
 {
 	refresh();
-	
-	//用于方向记录
+	// record the direction and movement, use for further dev.
 	int dir_pacman = -1;
 	int ghost_num = ghosts.size();
 	int *dir_ghosts = new int[ghost_num];
 	
 	int speed_adapter = 0;
 	while (true) {
-		//初始化 -1 表示未移动
 		dir_pacman = -1;
 		for (int i = 0; i < ghost_num; i++)
 			dir_ghosts[i] = -1;
-
-		//小怪移动模块
+		//ghosts
 		if (map.freezeTime == 0) {
 			++speed_adapter;
 			if (speed_adapter == GHOST_SPEED) {
 				speed_adapter = 0;
-				//所有小怪都移动
+				//all ghosts move to player
 				for (int i = 0; i < ghost_num; i++) {
 					dir_ghosts[i]=ghosts[i].move(map, pac_man);
 				}
 			}
 			pac_man.color = YELLOW_COLOR;
 		}
-		else { //处于超级豆模式
+		else { //Super pean period
 			map.freezeTime--;
 			PacmanColors_i = (PacmanColors_i + 1) % (sizeof(Pacman_Colors) / 4);
 			pac_man.color = Pacman_Colors[PacmanColors_i];
@@ -327,7 +324,7 @@ bool Game::loop()
 			if (ghost_i.hit(pac_man,map))
 				return game_over();
 		}
-		//layout
+		//layout for the information like time,score
 		infoUI();
 
 		++time_counter;
@@ -504,6 +501,6 @@ void Game::refresh()
 	for (auto &ghost_i : ghosts) {
 		ghost_i.print();
 	}
-	infoUI();
-	helpUI();
+	infoUI();	//Timer,score,super pean countdown
+	helpUI();	//Instructions
 }

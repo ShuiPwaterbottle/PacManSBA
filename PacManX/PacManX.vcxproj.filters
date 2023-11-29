@@ -75,5 +75,8 @@
     <None Include="game.record">
       <Filter>资源文件</Filter>
     </None>
+    <None Include="..\..\..\..\SBA.docx">
+      <Filter>资源文件</Filter>
+    </None>
   </ItemGroup>
 </Project>

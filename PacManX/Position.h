@@ -34,5 +34,6 @@ public:
 	void print();
 	//Clear the string on particular coordinate
 	void clear();
+	void getXY(int& x, int& y);
 };
 

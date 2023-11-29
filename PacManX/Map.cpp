@@ -128,7 +128,8 @@ void Map::findPath(Position & A, Position & B)
 		for (int i = 0; i < 4; i++) {
 			int ix = tempXY.x + dx[i];
 			int iy = tempXY.y + dy[i];
-			if (ix >= 0 && ix < MAP_SIZE&&iy >= 0 && iy < MAP_SIZE && !visited[ix][iy] && points[ix][iy].getType() != WALL ) {
+			if (ix >= 0 && ix < MAP_SIZE&&iy >= 0 && iy < MAP_SIZE && !visited[ix][iy] && points[ix][iy].getType() != WALL )
+			{
 				visited[ix][iy] = 1;
 				PosXY next;
 				next.x = ix;

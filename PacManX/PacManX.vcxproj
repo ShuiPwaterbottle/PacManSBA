@@ -164,6 +164,7 @@
     <Text Include="map.txt" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\..\..\SBA.docx" />
     <None Include="game.record" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
