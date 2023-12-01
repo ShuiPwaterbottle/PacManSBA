@@ -236,7 +236,7 @@ bool Game::settings()
 
 int RECORD_MAX_IDX = 0;
 
-//”√”⁄≥‘∂π»À…¡À∏
+// For blinking the player
 int Pacman_Colors[] = { WHITE_COLOR, RED_COLOR, GREEN_COLOR, YELLOW_COLOR, BLUE_GREEN_COLOR };
 int PacmanColors_i = 0;
 bool Game::loop()

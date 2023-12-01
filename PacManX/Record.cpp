@@ -33,7 +33,7 @@ void Record::save()
 	ofstream fout(filepath);
 	if (!fout) {
 		system("cls");
-		cout << ".exe同目录下，写入\"" << filepath << "\"文件失败！请更换存放目录...\n\n\n";
+		cout << "Cannot write the record file in this path. Please try another path to store the record.";
 		exit(-1);
 	}
 	fout << items.size() << endl;
@@ -54,7 +54,7 @@ void Record::save()
 void Record::add(int the_score, const vector<int> &steps, int ghost_num, int speed)
 {
 	read();
-	time_t t = time(NULL);
+	time_t t = time(NULL); //Get the current time
 	char time_string[64] = { 0 };
 	strftime(time_string, sizeof(time_string) - 1, "%Y-%m-%d_%H:%M:%S", localtime(&t));   
 	items.push_back(RecordItem(time_string, the_score));
