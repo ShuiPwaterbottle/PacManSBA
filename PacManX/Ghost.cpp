@@ -9,9 +9,9 @@ Ghost::Ghost(int x, int y)
 	color = RED_COLOR;
 	setKey("●");
 }
-int Ghost::move(Map & map,Pacman &pacman) //check for movement
+int Ghost::move(Map & map,Pacman &pacman)
 {
-	int res = -1;//返回值：走的方向
+	int res = -1;//return when no direction. Always do checking.
 	int tempX = x, tempY = y;
 	bool flag = true;
 	while (flag) {
