@@ -160,8 +160,8 @@
     <ClInclude Include="commonh.h" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="acutalmap.txt" />
     <Text Include="map.txt" />
+    <Text Include="testingmap.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\..\SBA.docx" />

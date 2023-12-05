@@ -98,16 +98,15 @@ void Map::delSuperPean(int x, int y)
 	points[x][y].setType(SPACE);
 	points[x][y].print();
 }
-//记录一个坐标的前一个位置的坐标
+//To record the previous coordinate
 int pre[MAP_SIZE*MAP_SIZE];
-//判断一个坐标是否已经走过
+//Visited node
 bool visited[MAP_SIZE][MAP_SIZE];
-//四个方向
+//Directions
 int dx[4] = { 1, 0, -1, 0 };
 int dy[4] = { 0, 1, 0, -1 };
 void Map::findPath(Position & A, Position & B)
 {
-	//初始化
 	for (int i = 0; i < MAP_SIZE; i++) {
 		for (int j = 0; j < MAP_SIZE; j++) {
 			visited[i][j] = false;
@@ -144,17 +143,13 @@ void Map::findPath(Position & A, Position & B)
 }
 int Map::findDir(Position & A, Position & B)
 {
-	//BFS找出路径，记录在pre数组中
-	findPath(A, B);
-
-	//从路径中找出下一步A->B下一步该走的方向
+	findPath(A, B); // find the path, then record the previous coordinate in the array
 	int endPoint = B.x*MAP_SIZE + B.y;
 	while (true) {
 		int prePoint = pre[endPoint];
 		int ix = prePoint / MAP_SIZE;
 		int iy = prePoint % MAP_SIZE;
 		if (ix == A.x&&iy == A.y) {
-			//找了第一步该走的点
 			int dirx = endPoint / MAP_SIZE;
 			int diry = endPoint % MAP_SIZE;
 			if (dirx == ix && diry == iy - 1)

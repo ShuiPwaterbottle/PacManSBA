@@ -50,44 +50,6 @@ int Ghost::move(Map & map,Pacman &pacman) //check for movement
 	return res;
 }
 
-int Ghost::move(int dir, Map & map, Pacman & pacman)
-{
-	if (dir == -1) return dir;
-	//先备份x,y 防止下一个位置不合法
-	int tempX = x, tempY = y;
-	bool flag = true;//用于标志，是否迈出了一步
-	switch (dir)
-	{
-	case UP:
-		go = UP;
-		--y;
-		break;
-	case DOWN:
-		go = DOWN;
-		++y;
-		break;
-	case LEFT:
-		go = LEFT;
-		--x;
-		break;
-	case RIGHT:
-		go = RIGHT;
-		++x;
-		break;
-	default:
-		break;
-	}
-	if (!map.oK(x, y) || map.goXY(x, y) == WALL ) {
-		x = tempX; y = tempY;
-	}
-	else {
-		flag = false;
-		map.renew(tempX, tempY);
-	}
-	print();
-	return dir;
-}
-
 bool Ghost::hit(Pacman & pacman, Map &map)
 {
 	int a, b;
