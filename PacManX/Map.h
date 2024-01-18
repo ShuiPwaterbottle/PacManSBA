@@ -21,7 +21,6 @@ public:
 	int getType() { return type; }
 };
 
-//用于寻路的坐标结构体
 struct PosXY
 {
 	int x, y;
