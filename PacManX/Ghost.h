@@ -5,9 +5,7 @@
 
 class Ghost:public Position
 {
-	//表示移动方向
 	DIRECTION go;
-	//初始位置坐标
 	int init_x, init_y;
 public:
 	Ghost() {};
