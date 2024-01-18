@@ -7,8 +7,6 @@ using namespace std;
 const int MAP_SIZE = 29;
 const int PACMAN_X = MAP_SIZE / 2;
 const int PACMAN_Y = MAP_SIZE / 2;
-
-//时钟周期
 extern const int TIME_SPEED;
 const int MAX_FREEZE_TIME = 5 * 1000 / TIME_SPEED;
 
@@ -23,7 +21,7 @@ public:
 	int getType() { return type; }
 };
 
-//用于寻路的坐标结构体
+//鐢ㄤ簬瀵昏矾鐨勫潗鏍囩粨鏋勪綋
 struct PosXY
 {
 	int x, y;
